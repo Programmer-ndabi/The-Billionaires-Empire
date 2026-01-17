@@ -162,7 +162,6 @@ function checkReminder() {
 
 checkReminder();
 
-let deferredPrompt;
 
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
@@ -181,5 +180,31 @@ function showInstallPrompt() {
   }
 }
 
-// Optional button (you can add later)
+// ======= INSTALL BUTTON (PWA) =======
 
+const installBtn = document.getElementById("installBtn");
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = "block";
+});
+
+installBtn.addEventListener("click", async () => {
+  installBtn.style.display = "none";
+
+  if (!deferredPrompt) return;
+
+  deferredPrompt.prompt();
+
+  const choice = await deferredPrompt.userChoice;
+
+  if (choice.outcome === "accepted") {
+    console.log("App installed");
+  } else {
+    console.log("Install dismissed");
+  }
+
+  deferredPrompt = null;
+});
