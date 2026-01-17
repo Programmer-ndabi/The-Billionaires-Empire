@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The-Billionaires-Empire</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div id="app">
+    <h1>The-Billionaires-Empire</h1>
+
+    <div class="user-setup">
+      <input id="username" placeholder="Enter your name" />
+      <button id="saveName">Save</button>
+    </div>
+
+    <div class="theme-picker">
+  <label>Choose Theme Color:</label>
+  <input type="color" id="themeColor" />
+</div>
+
+<div class="reminder">
+  <h3>Daily Saving Reminder</h3>
+
+  <label>
+    <input type="checkbox" id="enableReminder" />
+    Enable Reminder
+  </label>
+
+  <br />
+
+  <label>
+    Reminder Time:
+    <input type="time" id="reminderTime" />
+  </label>
+</div>
+
+    <div class="deposit">
+      <input
+        type="number"
+        id="amount"
+        placeholder="Deposit (1 - 365)"
+        min="1"
+        max="365"
+      />
+      <button id="depositBtn">Deposit</button>
+    </div>
+
+    <div id="calendar" class="calendar"></div>
+
+    <div class="stats">
+  <h2>Progress</h2>
+
+  <p><strong>Days Completed:</strong> <span id="daysCompleted">0</span> / 365</p>
+  <p><strong>Total Saved:</strong> Ksh <span id="totalSaved">0</span></p>
+  <p><strong>Expected by Today:</strong> Ksh <span id="expectedSaved">0</span></p>
+
+  <p id="performanceStatus"></p>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+</div>
+
+  </div>
+
+  <script src="js/app.js"></script>
+
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then(() => console.log("Service Worker Registered"));
+  }
+</script>
+
+</body>
+</html>

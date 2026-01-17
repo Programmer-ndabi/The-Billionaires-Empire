@@ -1,0 +1,77 @@
+:root {
+  --primary: gold;
+  --accent: orange;
+  --overlay: rgba(0,0,0,0.3);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+  background-size: 600% 600%;
+  animation: gradientFlow 20s ease infinite;
+  color: white;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+#app {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.day {
+  padding: 10px;
+  text-align: center;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.15);
+}
+
+.day.completed {
+  background: var(--primary);
+  color: black;
+  font-weight: bold;
+}
+
+.stats {
+  margin-top: 30px;
+  background: var(--overlay);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 14px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 1s ease;
+}
+
+.reminder {
+  margin-top: 20px;
+  padding: 15px;
+  background: var(--overlay);
+  border-radius: 12px;
+}
