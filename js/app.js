@@ -163,23 +163,6 @@ function checkReminder() {
 checkReminder();
 
 
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-});
-
-function showInstallPrompt() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        console.log("User accepted the install prompt");
-      }
-      deferredPrompt = null;
-    });
-  }
-}
-
 // ======= INSTALL BUTTON (PWA) =======
 const installBtn = document.getElementById("installBtn");
 let deferredPrompt;
