@@ -181,29 +181,37 @@ function showInstallPrompt() {
 }
 
 // ======= INSTALL BUTTON (PWA) =======
-
 const installBtn = document.getElementById("installBtn");
 let deferredPrompt;
 
+// Show the install button whenever possible
 window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
+  e.preventDefault();        // stop default mini prompt
   deferredPrompt = e;
-  installBtn.style.display = "block";
+  installBtn.style.display = "block"; // show our custom button
 });
 
+// For browsers that support PWA but didn't trigger beforeinstallprompt
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  installBtn.style.display = "none"; // hide if already installed
+}
+
+// Click handler for install button
 installBtn.addEventListener("click", async () => {
   installBtn.style.display = "none";
 
-  if (!deferredPrompt) return;
+  if (!deferredPrompt) {
+    alert("Install prompt not available right now. Try again later!");
+    return;
+  }
 
   deferredPrompt.prompt();
-
   const choice = await deferredPrompt.userChoice;
 
   if (choice.outcome === "accepted") {
-    console.log("App installed");
+    console.log("App installed ✅");
   } else {
-    console.log("Install dismissed");
+    console.log("Install dismissed ❌");
   }
 
   deferredPrompt = null;
