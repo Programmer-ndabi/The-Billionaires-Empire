@@ -1,5 +1,11 @@
 const CACHE_NAME = "empire-cache-v1";
-const urlsToCache = ["/", "/index.html", "/css/style.css", "/js/app.js"];
+const urlsToCache = [
+  "./",
+  "./index.html",
+  "./css/style.css",
+  "./js/app.js",
+  "./favicon.ico"
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
